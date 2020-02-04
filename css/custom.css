@@ -82,6 +82,36 @@ You're the boss, so have fun editing!
 
 }/* don't delete this closing bracket */
 
+/* Text meant only for screen readers. */
+.screen-reader-text {
+  border: 0;
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  word-wrap: normal !important;
+}
+.screen-reader-text:focus {
+  background-color: #eee;
+  clip: auto !important;
+  clip-path: none;
+  color: #444;
+  display: block;
+  font-size: 1em;
+  height: auto;
+  left: 5px;
+  line-height: normal;
+  padding: 15px 23px 14px;
+  text-decoration: none;
+  top: 5px;
+  width: auto;
+  z-index: 100000; /* Above WP toolbar. */
+}
+
 /* HEADER */
 #masthead {
   border-bottom: 7px solid #449B23
@@ -161,4 +191,69 @@ You're the boss, so have fun editing!
 
 .header-button.underlined {
   box-shadow: none !important;
+}
+
+/* FOOTER */
+.footer-widget:not(:first-child) {
+  display: flex;
+  align-items: flex-end;
+}
+
+.footer-widget .widget p, .footer-widget .widget li, .footer-widget .widget .textwidget,
+.footer-style-2 .footer-inner-top, .footer-style-2 .footer-widget a {
+  color: #fff;
+  font-size: 18px;
+  margin-bottom: 0;
+}
+
+.footer-inner .footer-widget:first-child {
+  flex: 2 2 0;
+  max-width: 100%;
+}
+
+.footer-widget .widget:last-child {
+  margin-bottom: 0;
+}
+
+.footer-inner .footer-widget:last-child .widget {
+  width: 100%;
+  text-align: right;
+}
+
+/* HOME */
+.home-page #page {
+  padding-top: 0;
+}
+
+.home-page #page .entry-header,
+.home-page #page .wp-block-search__label,
+.wp-block-search__button {
+  border: 0;
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  word-wrap: normal !important;
+}
+
+.home-page #page .wp-block-search {
+  margin-left: calc( -100vw / 2 + 100% / 2 );
+  margin-right: calc( -100vw / 2 + 100% / 2 );
+  max-width: 100vw;
+  padding: 188px calc( (100vw - 1170px) / 2) 282px;
+  background: #093C60;
+}
+
+.home-page #page .wp-block-search__input {
+  font-size: 30px;
+  box-shadow: 0px 0px 0px 9px rgba(255,255,255,.6);
+  border-radius: 38px;
+  padding: 24px 38px;
+  border: none;
+  max-width: 690px;
+  margin: 0 auto;
 }
