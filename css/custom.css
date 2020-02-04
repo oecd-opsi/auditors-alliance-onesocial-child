@@ -81,3 +81,84 @@ You're the boss, so have fun editing!
 
 
 }/* don't delete this closing bracket */
+
+/* HEADER */
+#masthead {
+  border-bottom: 7px solid #449B23
+}
+
+.header-wrapper {
+  padding: 0;
+}
+
+.header-wrapper [class*='row'] {
+  max-width: 1170px;
+  margin: 0 auto;
+}
+
+#header-aside-inner {
+  float: none;
+}
+
+.site-header .site-title {
+  width: auto;
+}
+
+#logo-area {
+  padding-right: 0;
+  width: 230px;
+  margin: 36px 0 28px;
+}
+
+.header-wrapper-first-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header-wrapper hr {
+  background: #EAE5DB;
+  margin-bottom: 0;
+}
+
+.main-navigation .nav-menu > li > a {
+  font-size: 16px;
+  font-weight: bold;
+  color: #58595B;
+  text-transform: none;
+  padding: 21px 0;
+  line-height: 1;
+}
+.main-navigation .nav-menu > li:first-child > a {
+  margin-left: 0;
+}
+.main-navigation .nav-menu > li:last-child > a {
+  margin-right: 0;
+}
+
+#menu-main-1 {
+  display: flex;
+  align-items: center;
+}
+
+#gtranslate_selector {
+  border: none;
+  border-left: 1px solid #EAE5DB;
+  text-transform: uppercase;
+  font-size: 16px;
+  font-weight: bold;
+  color: #00508A;
+  padding: 10px 12px;
+  appearance:none;
+    -moz-appearance:none; /* Firefox */
+    -webkit-appearance:none; /* Safari and Chrome */
+  background: transparent url('../images/select-arrow.png') no-repeat right center;
+}
+
+.header-button {
+  border-left: none;
+}
+
+.header-button.underlined {
+  box-shadow: none !important;
+}
