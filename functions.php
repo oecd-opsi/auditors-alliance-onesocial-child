@@ -56,6 +56,109 @@ add_action( 'wp_enqueue_scripts', 'onesocial_child_theme_scripts_styles', 9999 )
 
 // Add your own custom functions here
 
+/*
+ * Get the most recently replied-to topics, and their most recent reply
+ * from https://www.daggerhart.com/bbpress-recent-replies-shortcode/
+ */
+function custom_bbpress_recent_replies_by_topic($atts){
+  $short_array = shortcode_atts(array('show' => 5, 'forum' => false, 'include_empty_topics' => false), $atts);
+  extract($short_array);
 
+  // default values
+  $post_types = array('reply');
+  $meta_key = '_bbp_last_reply_id';
 
-?>
+  // allow for topics with no replies
+  if ( $include_empty_topics ) {
+    $meta_key = '_bbp_last_active_id';
+    $post_types[] = 'topic';
+  }
+
+  // get the 5 topics with the most recent replies
+  $args = array(
+    'posts_per_page' => $show,
+    'post_type' => array('topic'),
+    'post_status' => array('publish'),
+    'orderby' => 'meta_value_num',
+    'order' => 'DESC',
+    'meta_key' => $meta_key,
+  );
+  // allow for specific forum limit
+  if ($forum){
+    $args['post_parent'] = $forum;
+  }
+
+  $query = new WP_Query($args);
+  $reply_ids = array();
+
+  // get the reply post->IDs for these most-recently-replied-to-topics
+  while($query->have_posts()){
+    $query->the_post();
+    if ($reply_post_id = get_post_meta(get_the_ID(), $meta_key, true)){
+      $reply_ids[] = $reply_post_id;
+    }
+  }
+  wp_reset_query();
+
+  // get the actual replies themselves
+  $args = array(
+    'posts_per_page' => $show,
+    'post_type' => $post_types,
+    // 'post__in' => $reply_ids,
+    'orderby' => 'date',
+    'order' => 'DESC'
+  );
+
+  $query = new WP_Query($args);
+  ob_start();
+    // loop through results and output our rows
+    while($query->have_posts()){
+      $query->the_post();
+
+      // custom function for a single reply row
+      custom_bbpress_recent_reply_row_template( $query->current_post + 1 );
+    }
+    wp_reset_query();
+
+  $output = '<div class="latest-replies"><h3 class="latest-replies-title">Latest post</h3><ul class="latest-replies-list">' . ob_get_clean() . '</ul></div>';
+  return $output;
+}
+add_shortcode('bbpress_recent_replies_by_topic', 'custom_bbpress_recent_replies_by_topic');
+/*
+ * Executed during our custom loop
+ *  - this should be the only thing you need to edit
+ */
+function custom_bbpress_recent_reply_row_template( $row_number ){
+
+  // get the reply title
+  $title = get_the_title();
+  // $title = substr( $title, 0, 55); // trim title to specific number of characters (55 characters)
+  // $title = wp_trim_words( $title, 5, '...'); // trim title to specific number of words (5 words)...
+
+  // get belonging forum
+  $parent = array_reverse( get_post_ancestors( get_the_ID()) );
+  $first_parent = get_page( $parent[0] );
+  $parent_forum_ID = apply_filters('the_ID', $first_parent->ID);
+  $parent_forum_title = bbp_get_forum_title( $parent_forum_ID );
+  $parent_forum_url = bbp_get_forum_permalink( $parent_forum_ID );
+
+  // determine if odd or even row
+  $row_class = ($row_number % 2) ? 'odd' : 'even';
+  ?>
+    <li class="bbpress-recent-reply-row <?php print $row_class; ?>">
+      <div class="recent-replies-avatar"><?php echo get_avatar( get_the_author_meta( 'ID' ) ); ?></div>
+      <div class="recent-replies-body">
+        <div class="recent-replies-title"><a href="<?php the_permalink(); ?>"><?php the_author(); ?> <?php echo __('posted an update in ', 'onesocial') ?> <?php echo $parent_forum_title; ?></a></div>
+      </div>
+      <div class="recent-replies-time-diff"><?php print human_time_diff( get_the_time('U'), current_time('timestamp') ) . ' ago'; ?></div>
+    </li>
+  <?php
+
+  // Refs
+  // http://codex.wordpress.org/Template_Tags#Post_tags
+  // http://codex.wordpress.org/Function_Reference/get_avatar
+  // http://codex.wordpress.org/Function_Reference/human_time_diff
+  // (template tags for bbpress)
+  // https://bbpress.trac.wordpress.org/browser/trunk/src/includes/users/template.php
+  // https://bbpress.trac.wordpress.org/browser/trunk/src/includes/replies/template.php
+}
