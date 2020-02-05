@@ -126,7 +126,6 @@ function custom_bbpress_recent_replies_by_topic($atts){
 add_shortcode('bbpress_recent_replies_by_topic', 'custom_bbpress_recent_replies_by_topic');
 /*
  * Executed during our custom loop
- *  - this should be the only thing you need to edit
  */
 function custom_bbpress_recent_reply_row_template( $row_number ){
 
@@ -140,7 +139,6 @@ function custom_bbpress_recent_reply_row_template( $row_number ){
   $first_parent = get_page( $parent[0] );
   $parent_forum_ID = apply_filters('the_ID', $first_parent->ID);
   $parent_forum_title = bbp_get_forum_title( $parent_forum_ID );
-  $parent_forum_url = bbp_get_forum_permalink( $parent_forum_ID );
 
   // determine if odd or even row
   $row_class = ($row_number % 2) ? 'odd' : 'even';
@@ -162,3 +160,60 @@ function custom_bbpress_recent_reply_row_template( $row_number ){
   // https://bbpress.trac.wordpress.org/browser/trunk/src/includes/users/template.php
   // https://bbpress.trac.wordpress.org/browser/trunk/src/includes/replies/template.php
 }
+
+// Shortcode to display Gallery featured image
+function gallery_feat_img() {
+  $term_id = get_queried_object_id();
+  $feat_img = get_term_meta( $term_id, 'wpcf-featured-image', true );
+  return $feat_img;
+}
+add_shortcode( 'gallery-featured-img', 'gallery_feat_img' );
+
+// Shortcode to display Term description
+function term_desc() {
+  $term_id = get_queried_object_id();
+  $term_desc = term_description( $term_id );
+  return $term_desc;
+}
+add_shortcode( 'term-description', 'term_desc' );
+
+// Shortcode to display Term name
+function term_name() {
+  $term_obj = get_queried_object();
+  $term_name = $term_obj->name;
+  return $term_name;
+}
+add_shortcode( 'term-name', 'term_name' );
+
+// Display Gallery main topic discussion
+function gallery_main_topic() {
+  $term_id = get_queried_object_id();
+  // Query to get the Forum with current term associated
+  $args = array(
+  	'post_type'              => array( 'forum' ),
+    'tax_query' => array(
+        array (
+            'taxonomy' => 'gallery',
+            'field' => 'term_id',
+            'terms' => $term_id,
+        )
+    ),
+  );
+  $query = new WP_Query( $args );
+  $related_forum = $query->posts[0];
+  $forum_id = $related_forum->ID;
+  return do_shortcode( '[bbp-single-topic id=133]');
+}
+add_shortcode( 'gallery-forum', 'gallery_main_topic' );
+
+/**
+ * Remove archive title prefixes.
+ *
+ * @param  string  $title  The archive title from get_the_archive_title();
+ * @return string          The cleaned title.
+ */
+function grd_custom_archive_title( $title ) {
+	// Remove any HTML, words, digits, and spaces before the title.
+	return preg_replace( '#^[\w\d\s]+:\s*#', '', strip_tags( $title ) );
+}
+add_filter( 'get_the_archive_title', 'grd_custom_archive_title' );
