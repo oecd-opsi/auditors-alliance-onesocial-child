@@ -193,9 +193,9 @@ function gallery_main_topic() {
   	'post_type'              => array( 'forum' ),
     'tax_query' => array(
         array (
-            'taxonomy' => 'gallery',
-            'field' => 'term_id',
-            'terms' => $term_id,
+          'taxonomy' => 'gallery',
+          'field' => 'term_id',
+          'terms' => $term_id,
         )
     ),
   );
@@ -217,3 +217,65 @@ function grd_custom_archive_title( $title ) {
 	return preg_replace( '#^[\w\d\s]+:\s*#', '', strip_tags( $title ) );
 }
 add_filter( 'get_the_archive_title', 'grd_custom_archive_title' );
+
+// Display Back to gallery link - shortcode
+function back_to_gallery_func() {
+  global $post;
+  $terms = wp_get_post_terms( $post->ID, 'gallery');
+  $term_url = get_term_link( $terms[0]->term_id );
+  $output = '<a href="' . $term_url . '" class="back-to-gallery">&lt; &lt; Back to ' . $terms[0]->name . '</a>';
+  return $output;
+}
+add_shortcode( 'back-to-gallery', 'back_to_gallery_func');
+
+// Gallery index - Shortcode
+function gallery_index_func() {
+  // Get Gallery ID
+  global $post;
+  $terms = wp_get_post_terms( $post->ID, 'gallery');
+  $gallery_id = $terms[0]->term_id;
+
+  // WP_Query arguments
+  $args = array(
+  	'post_type'              => array( 'content' ),
+  	'post_status'            => array( 'published' ),
+  	'nopaging'               => true,
+  	'posts_per_page'         => '-1',
+    'tax_query' => array(
+        array (
+          'taxonomy' => 'gallery',
+          'field' => 'term_id',
+          'terms' => $gallery_id,
+        )
+    ),
+  );
+
+  // The Query
+  $query = new WP_Query( $args );
+
+  $ouput = '<ul class="gallery-index">';
+
+  // The Loop
+  if ( $query->have_posts() ) {
+  	while ( $query->have_posts() ) {
+  		$query->the_post();
+
+      $url = get_permalink();
+      $title = get_the_title();
+      $date = get_the_date( 'F j, Y' );
+
+      $output .= '<li><a href="' . $url . '"><h3>' . $title . '</h3><p class="date">' . $date . '</p></a>';
+
+  	}
+  } else {
+  	// no posts found
+  }
+
+  $output .= '</ul>';
+
+  // Restore original Post Data
+  wp_reset_postdata();
+
+  return $output;
+}
+add_shortcode( 'gallery-index', 'gallery_index_func' );
