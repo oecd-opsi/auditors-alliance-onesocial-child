@@ -537,6 +537,7 @@ li.bbp-forum-info, li.bbp-topic-title {
   border-radius: 9px;
   overflow: hidden;
   margin-bottom: 20px;
+  height: 248px;
 }
 
 .content-image-wrapper img {
@@ -907,4 +908,17 @@ a.back-to-gallery span {
   font-size: 30px;
   color: #093C60;
   margin-bottom: 0;
+}
+
+@media screen and (max-width: 720px) {
+
+  .content-header,
+  .body-wrapper {
+    display: block;
+  }
+
+  .content-featured-image-container {
+    margin-bottom: 2em;
+  }
+
 }
