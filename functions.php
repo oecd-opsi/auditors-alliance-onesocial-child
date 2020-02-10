@@ -56,6 +56,18 @@ add_action( 'wp_enqueue_scripts', 'onesocial_child_theme_scripts_styles', 9999 )
 
 // Add your own custom functions here
 
+// Add assets to Gutenberg
+function bs_block_styles_enqueue_javascript() {
+
+	// add block style
+  wp_enqueue_script( 'bs-block-styles-script',
+    get_stylesheet_directory_uri() . '/js/bs-block.js',
+    array( 'wp-blocks', 'wp-dom' )
+  );
+
+}
+add_action( 'enqueue_block_editor_assets', 'bs_block_styles_enqueue_javascript', 0 );
+
 /*
  * Get the most recently replied-to topics, and their most recent reply
  * from https://www.daggerhart.com/bbpress-recent-replies-shortcode/
@@ -202,9 +214,17 @@ function gallery_main_topic() {
   $query = new WP_Query( $args );
   $related_forum = $query->posts[0];
   $forum_id = $related_forum->ID;
-  return do_shortcode( '[bbp-single-topic id=133]');
+  return do_shortcode( '[bbp-single-topic id=' . ( $forum_id + 1 ) . ']');
 }
 add_shortcode( 'gallery-forum', 'gallery_main_topic' );
+
+// Display Content related topic discussion
+function content_topic() {
+  global $post;
+  $topic_id = toolset_get_related_post( $post, 'content-topic', 'child' );
+  return do_shortcode( '[bbp-single-topic id='.$topic_id.']');
+}
+add_shortcode( 'content-forum', 'content_topic' );
 
 /**
  * Remove archive title prefixes.
@@ -223,7 +243,7 @@ function back_to_gallery_func() {
   global $post;
   $terms = wp_get_post_terms( $post->ID, 'gallery');
   $term_url = get_term_link( $terms[0]->term_id );
-  $output = '<a href="' . $term_url . '" class="back-to-gallery">&lt; &lt; Back to ' . $terms[0]->name . '</a>';
+  $output = '<a href="' . $term_url . '" class="back-to-gallery">&lt; &lt; Back to <span>' . $terms[0]->name . '</span></a>';
   return $output;
 }
 add_shortcode( 'back-to-gallery', 'back_to_gallery_func');
@@ -253,7 +273,7 @@ function gallery_index_func() {
   // The Query
   $query = new WP_Query( $args );
 
-  $ouput = '<ul class="gallery-index">';
+  $output = '<ul class="gallery-index">';
 
   // The Loop
   if ( $query->have_posts() ) {
@@ -264,7 +284,7 @@ function gallery_index_func() {
       $title = get_the_title();
       $date = get_the_date( 'F j, Y' );
 
-      $output .= '<li><a href="' . $url . '"><h3>' . $title . '</h3><p class="date">' . $date . '</p></a>';
+      $output .= '<li><h3><a href="' . $url . '">' . $title . '</a></h3><p class="date">' . $date . '</p></li>';
 
   	}
   } else {
@@ -279,3 +299,10 @@ function gallery_index_func() {
   return $output;
 }
 add_shortcode( 'gallery-index', 'gallery_index_func' );
+
+// Remove single header from single content template
+function content_remove_single_header( $value ) {
+  $value = is_single() && !( function_exists( 'is_bbpress' ) && is_bbpress() ) && !( function_exists( 'is_product' ) && is_product() ) && !( function_exists( 'WPJM' ) && get_post_type() === 'job_listing' ) && !is_singular( 'content' );
+  return $value;
+}
+add_filter( 'onesocial_single_header', 'content_remove_single_header' );
