@@ -214,7 +214,7 @@ function gallery_main_topic() {
   $query = new WP_Query( $args );
   $related_forum = $query->posts[0];
   $forum_id = $related_forum->ID;
-  return do_shortcode( '[bbp-single-topic id=' . ( $forum_id + 1 ) . ']');
+  return do_shortcode( '[bbp-single-forum id=' . $forum_id . ']');
 }
 add_shortcode( 'gallery-forum', 'gallery_main_topic' );
 
@@ -241,7 +241,7 @@ add_filter( 'get_the_archive_title', 'grd_custom_archive_title' );
 // Display Back to gallery link - shortcode
 function back_to_gallery_func() {
   global $post;
-  $terms = wp_get_post_terms( $post->ID, 'gallery');
+  $terms = get_the_terms( $post->ID, 'gallery');
   $term_url = get_term_link( $terms[0]->term_id );
   $output = '<a href="' . $term_url . '" class="back-to-gallery">&lt; &lt; Back to <span>' . $terms[0]->name . '</span></a>';
   return $output;
@@ -252,7 +252,7 @@ add_shortcode( 'back-to-gallery', 'back_to_gallery_func');
 function gallery_index_func() {
   // Get Gallery ID
   global $post;
-  $terms = wp_get_post_terms( $post->ID, 'gallery');
+  $terms = get_the_terms( $post->ID, 'gallery');
   $gallery_id = $terms[0]->term_id;
 
   // WP_Query arguments
@@ -306,3 +306,50 @@ function content_remove_single_header( $value ) {
   return $value;
 }
 add_filter( 'onesocial_single_header', 'content_remove_single_header' );
+
+// Redirect from forum to gallery if there's a relationship
+function forum_to_gallery_redirect() {
+
+  if(  bbp_is_single_forum() ) {
+
+    global $post;
+    $terms = get_the_terms( $post->ID, 'gallery');
+    if( !empty($terms) ) {
+      $gallery_url = get_term_link( $terms[0] );
+      wp_safe_redirect( $gallery_url );
+      exit;
+    }
+
+  }
+
+}
+add_action( 'template_redirect', 'forum_to_gallery_redirect' );
+
+// Redirect from topic to content if there's a relationship
+function topic_to_content_redirect() {
+
+  if(  bbp_is_single_topic() ) {
+
+    global $post;
+    $content_id = toolset_get_related_post( $post, 'content-topic', 'parent' );
+    if( $content_id > 0 ) {
+      $content_url = get_permalink( $content_id );
+      wp_safe_redirect( $content_url );
+      exit;
+    }
+
+  }
+
+}
+add_action( 'template_redirect', 'topic_to_content_redirect' );
+
+// Redirect main forum page to homepage
+function mainforum_to_home_redirect() {
+
+  if(  bbp_is_forum_archive() ) {
+    wp_safe_redirect( site_url() );
+    exit;
+  }
+
+}
+add_action( 'template_redirect', 'mainforum_to_home_redirect' );

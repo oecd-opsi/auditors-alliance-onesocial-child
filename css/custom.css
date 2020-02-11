@@ -112,6 +112,10 @@ You're the boss, so have fun editing!
   z-index: 100000; /* Above WP toolbar. */
 }
 
+a {
+  outline: inherit;
+}
+
 h2 {
   font-size: 30px;
   font-weight: bold;
@@ -403,8 +407,7 @@ li.bbp-forum-info, li.bbp-topic-title {
   margin-top: 0;
 }
 
-.latest-replies-title,
-.bbp-header {
+.latest-replies-title {
   background: #FCA01F;
   padding: 0 38px;
   border-radius: 10px;
@@ -669,7 +672,8 @@ span.bbp-admin-links a:hover {
   font-size: 13px;
 }
 
-#bbp_reply_submit {
+#bbp_reply_submit,
+#bbp_topic_submit {
   background: #E68906;
   font-size: 14px;
   font-weight: bold;
@@ -678,6 +682,29 @@ span.bbp-admin-links a:hover {
   border-radius: 3px;
   line-height: 1;
   text-transform: uppercase;
+}
+
+#bbpress-forums #subscription-toggle > span {
+  height: auto;
+  width: auto;
+}
+
+#bbpress-forums  #subscription-toggle a.subscription-toggle {
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color:  #fff;
+  background:  #E68906;
+  border-radius: 3px;
+  width: auto;
+  height: auto;
+  position: static;
+  padding: 9px;
+}
+
+#bbpress-forums  #subscription-toggle a.subscription-toggle::before,
+#bbpress-forums  #subscription-toggle a.subscription-toggle::after {
+  display: none;
 }
 
 /* SINGLE CONTENT */
