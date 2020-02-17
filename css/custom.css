@@ -707,6 +707,10 @@ span.bbp-admin-links a:hover {
   display: none;
 }
 
+.mce-toolbar .mce-ico {
+  color: #fff !important;
+}
+
 /* SINGLE CONTENT */
 .single:not(.bp-user):not(.bbpress) #primary {
   max-width: 100%;
