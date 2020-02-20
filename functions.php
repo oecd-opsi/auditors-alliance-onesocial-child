@@ -158,7 +158,7 @@ function custom_bbpress_recent_reply_row_template( $row_number ){
     <li class="bbpress-recent-reply-row <?php print $row_class; ?>">
       <div class="recent-replies-avatar"><?php echo get_avatar( get_the_author_meta( 'ID' ) ); ?></div>
       <div class="recent-replies-body">
-        <div class="recent-replies-title"><a href="<?php the_permalink(); ?>"><?php the_author(); ?> <?php echo __('posted an update in ', 'onesocial') ?> <?php echo $parent_forum_title; ?></a></div>
+        <div class="recent-replies-title"><a href="<?php bbp_reply_url( get_the_ID() ) ?>"><?php the_author(); ?> <?php echo __('posted an update in ', 'onesocial') ?> <?php echo $parent_forum_title; ?></a></div>
       </div>
       <div class="recent-replies-time-diff"><?php print human_time_diff( get_the_time('U'), current_time('timestamp') ) . ' ago'; ?></div>
     </li>
@@ -214,6 +214,7 @@ function gallery_main_topic() {
   $query = new WP_Query( $args );
   $related_forum = $query->posts[0];
   $forum_id = $related_forum->ID;
+  wp_reset_query();
   return do_shortcode( '[bbp-single-forum id=' . $forum_id . ']');
 }
 add_shortcode( 'gallery-forum', 'gallery_main_topic' );
@@ -232,11 +233,11 @@ add_shortcode( 'content-forum', 'content_topic' );
  * @param  string  $title  The archive title from get_the_archive_title();
  * @return string          The cleaned title.
  */
-function grd_custom_archive_title( $title ) {
+function bs_custom_archive_title( $title ) {
 	// Remove any HTML, words, digits, and spaces before the title.
 	return preg_replace( '#^[\w\d\s]+:\s*#', '', strip_tags( $title ) );
 }
-add_filter( 'get_the_archive_title', 'grd_custom_archive_title' );
+add_filter( 'get_the_archive_title', 'bs_custom_archive_title' );
 
 // Display Back to gallery link - shortcode
 function back_to_gallery_func() {
@@ -343,13 +344,25 @@ function topic_to_content_redirect() {
 }
 add_action( 'template_redirect', 'topic_to_content_redirect' );
 
-// Redirect main forum page to homepage
+// Redirect Content archive and main forum page to homepage
 function mainforum_to_home_redirect() {
 
-  if(  bbp_is_forum_archive() ) {
+  if(  bbp_is_forum_archive() ||  is_post_type_archive('content') ) {
     wp_safe_redirect( site_url() );
     exit;
   }
 
 }
 add_action( 'template_redirect', 'mainforum_to_home_redirect' );
+
+// Avoid bbPress moderation queue filter to work on Gallery archive pages
+function remove_moderation_queue_filter( $sql, $query ) {
+
+  if( is_tax( 'gallery' ) ) {
+    $sql = str_replace( 'AND ID NOT IN', 'AND wp_posts.ID NOT IN', $sql );
+  }
+
+  return $sql;
+
+}
+add_filter( 'posts_where', 'remove_moderation_queue_filter', 300, 2 );
