@@ -112,6 +112,10 @@ You're the boss, so have fun editing!
   z-index: 100000; /* Above WP toolbar. */
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 a {
   outline: inherit;
 }
@@ -302,16 +306,21 @@ h2 {
   text-transform: uppercase;
 }
 
-.how-work-section h3 {
+.how-work-section h3 a {
   font-size: 30px;
   font-weight: 500;
   margin-bottom: .3em;
+  color: #093c60;
 }
 
 .home-galleries-section {
   background: #fff;
   box-shadow: -500px 0 0 0 #fff, 500px 0 0 0 #fff;
   padding: 52px 0;
+}
+
+h2[id] {
+  scroll-margin-top: 10vh;
 }
 
 .galleries-container {
@@ -373,7 +382,14 @@ li.bbp-forum-info a.bbp-forum-title::before, li.bbp-topic-title a.bbp-topic-perm
   font-size: 16px;
 }
 
-#bbpress-forums .bbp-body [class|="loop-item"] {
+#bbpress-forums ul:not(.bbp-replies) .bbp-body {
+  padding: 0 38px 42px;
+  background: #fff;
+  border-radius: 10px;
+  border: 1px solid #EAE5DB;
+}
+
+#bbpress-forums .bbp-replies .bbp-body [class|="loop-item"] {
   padding: 0 38px 42px;
   background: #fff;
   border-radius: 10px;
@@ -604,6 +620,10 @@ li.bbp-forum-info, li.bbp-topic-title {
 }
 
 /* FORUM */
+h1.big {
+  font-size: 40px;
+}
+
 #bbpress-forums div.bbp-topic-author .bbp-author-avatar, #bbpress-forums div.bbp-reply-author .bbp-author-avatar {
   float: none;
   display: block;
@@ -716,6 +736,29 @@ span.bbp-admin-links a:hover {
 
 .mce-toolbar .mce-ico {
   color: #fff !important;
+}
+
+button.wp_ulike_btn {
+  background: transparent !important;
+}
+
+.d4p-bbt-quote-block .d4p-bbt-quote-link {
+  background-color: #108be5;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 12px;
+  line-height: 20px;
+  text-align: center;
+  text-decoration: none;
+  padding: 6px 14px;
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  display: inline-block;
+  font-weight: 300;
+  font-family: inherit;
+  margin-bottom: .5rem;
 }
 
 /* SINGLE CONTENT */
@@ -959,4 +1002,9 @@ a.back-to-gallery span {
     margin-bottom: 2em;
   }
 
+}
+
+/* REGISTER PAGE */
+div#register-page .register-section, div#register-page .security-question-section {
+  max-width: 100%;
 }

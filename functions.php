@@ -366,3 +366,5 @@ function remove_moderation_queue_filter( $sql, $query ) {
 
 }
 add_filter( 'posts_where', 'remove_moderation_queue_filter', 300, 2 );
+
+// require_once('includes/bp-custom.php');

@@ -39,7 +39,7 @@
 			<header id="masthead" class="site-header" data-infinite="<?php echo ( onesocial_get_option( 'boss_activity_infinite' ) ) ? 'on' : 'off'; ?>">
 				<div class="header-wrapper">
 					<div class="header-wrapper-first-row">
-						<img src="<?php echo get_stylesheet_directory_uri() ?>/images/oecd-logo.png" class="oecd-logo" alt="">
+						<a href="https://www.oecd.org/gov/ethics/auditors-alliance.htm" target="_blank"><img src="<?php echo get_stylesheet_directory_uri() ?>/images/oecd-logo.png" class="oecd-logo" alt=""></a>
 						<?php get_template_part( 'template-parts/header-logo' ); ?>
 					</div>
 					<hr>
