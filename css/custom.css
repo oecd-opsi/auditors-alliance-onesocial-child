@@ -1096,3 +1096,25 @@ a.back-to-gallery span {
 div#register-page .register-section, div#register-page .security-question-section {
   max-width: 100%;
 }
+
+/* IE fix */
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+
+  #primary {
+    -ms-flex: 1 0 100%;
+  }
+
+  .galleries-container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+
+  .galleries-container > .gallery-card {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 1 25%;
+            flex: 0 1 25%;
+    padding: 0 1%;
+  }
+
+}
