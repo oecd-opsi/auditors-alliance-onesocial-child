@@ -86,7 +86,8 @@ You're the boss, so have fun editing!
 .screen-reader-text {
   border: 0;
   clip: rect(1px, 1px, 1px, 1px);
-  clip-path: inset(50%);
+  -webkit-clip-path: inset(50%);
+          clip-path: inset(50%);
   height: 1px;
   margin: -1px;
   overflow: hidden;
@@ -98,7 +99,8 @@ You're the boss, so have fun editing!
 .screen-reader-text:focus {
   background-color: #eee;
   clip: auto !important;
-  clip-path: none;
+  -webkit-clip-path: none;
+          clip-path: none;
   color: #444;
   display: block;
   font-size: 1em;
@@ -155,9 +157,15 @@ h2 {
 }
 
 .header-wrapper-first-row {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 .header-wrapper hr {
@@ -181,8 +189,12 @@ h2 {
 }
 
 #menu-main-1 {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 #gtranslate_selector {
@@ -204,13 +216,18 @@ h2 {
 }
 
 .header-button.underlined {
-  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
 }
 
 /* FOOTER */
 .footer-widget:not(:first-child) {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: flex-end;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
 }
 
 .footer-widget .widget p, .footer-widget .widget li, .footer-widget .widget .textwidget,
@@ -221,7 +238,9 @@ h2 {
 }
 
 .footer-inner .footer-widget:first-child {
-  flex: 2 2 0;
+  -webkit-box-flex: 2;
+      -ms-flex: 2 2 0px;
+          flex: 2 2 0;
   max-width: 100%;
 }
 
@@ -253,7 +272,8 @@ h2 {
 .wp-block-search__button {
   border: 0;
   clip: rect(1px, 1px, 1px, 1px);
-  clip-path: inset(50%);
+  -webkit-clip-path: inset(50%);
+          clip-path: inset(50%);
   height: 1px;
   margin: -1px;
   overflow: hidden;
@@ -277,24 +297,31 @@ h2 {
 
 .home-page #page .wp-block-search__input {
   font-size: 30px;
-  box-shadow: 0px 0px 0px 9px rgba(255,255,255,.6);
+  -webkit-box-shadow: 0px 0px 0px 9px rgba(255,255,255,.6);
+          box-shadow: 0px 0px 0px 9px rgba(255,255,255,.6);
   border-radius: 38px;
   padding: 24px 38px;
   border: none;
   max-width: 690px;
   margin: 0 auto;
   background: #fff url('../images/search-icon.png') no-repeat calc(100% - 38px) center;
+  -webkit-transition: -webkit-box-shadow .2s cubic-bezier(0.71, 1.7, 0.77, 1.24);
+  transition: -webkit-box-shadow .2s cubic-bezier(0.71, 1.7, 0.77, 1.24);
+  -o-transition: box-shadow .2s cubic-bezier(0.71, 1.7, 0.77, 1.24);
   transition: box-shadow .2s cubic-bezier(0.71, 1.7, 0.77, 1.24);
+  transition: box-shadow .2s cubic-bezier(0.71, 1.7, 0.77, 1.24), -webkit-box-shadow .2s cubic-bezier(0.71, 1.7, 0.77, 1.24);
 }
 
 .home-page #page .wp-block-search__input:focus {
-  box-shadow: 0px 0px 0px 18px rgba(255,255,255,.6);
+  -webkit-box-shadow: 0px 0px 0px 18px rgba(255,255,255,.6);
+          box-shadow: 0px 0px 0px 18px rgba(255,255,255,.6);
 }
 
 .how-work-section {
   background: #fff;
   border-radius: 18px;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, .16);
+  -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, .16);
+          box-shadow: 0 3px 6px rgba(0, 0, 0, .16);
   margin: -116px auto 70px;
   padding: 30px;
   font-size: 18px;
@@ -315,7 +342,8 @@ h2 {
 
 .home-galleries-section {
   background: #fff;
-  box-shadow: -500px 0 0 0 #fff, 500px 0 0 0 #fff;
+  -webkit-box-shadow: -500px 0 0 0 #fff, 500px 0 0 0 #fff;
+          box-shadow: -500px 0 0 0 #fff, 500px 0 0 0 #fff;
   padding: 52px 0;
 }
 
@@ -324,9 +352,13 @@ h2[id] {
 }
 
 .galleries-container {
+  display: -ms-grid;
   display: grid;
+  -ms-grid-columns: 1fr 16px 1fr 16px 1fr 16px 1fr;
   grid-template-columns: repeat(4, 1fr);
-  column-gap: 16px;
+  -webkit-column-gap: 16px;
+     -moz-column-gap: 16px;
+          column-gap: 16px;
 }
 
 .gallery-card a {
@@ -339,9 +371,12 @@ h2[id] {
 
 .gallery-card a img {
   height: 247px;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
   border-radius: 9px;
   opacity: 1;
+  -webkit-transition: border-radius .2s ease-in-out, opacity .2s ease-in-out;
+  -o-transition: border-radius .2s ease-in-out, opacity .2s ease-in-out;
   transition: border-radius .2s ease-in-out, opacity .2s ease-in-out;
 }
 
@@ -474,6 +509,7 @@ li.bbp-forum-info, li.bbp-topic-title {
 @media screen and (max-width: 720px) {
 
   .galleries-container {
+    -ms-grid-columns: (1fr)[2];
     grid-template-columns: repeat(2, 1fr);
   }
 
@@ -497,13 +533,20 @@ li.bbp-forum-info, li.bbp-topic-title {
   font-size: 30px;
   font-weight: bold;
   text-transform: uppercase;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   background: #fff;
   margin-bottom: 0;
   padding-top: 70px;
-  box-shadow: -500px 0 0 0 #fff, 500px 0 0 0 #fff;
+  -webkit-box-shadow: -500px 0 0 0 #fff, 500px 0 0 0 #fff;
+          box-shadow: -500px 0 0 0 #fff, 500px 0 0 0 #fff;
 }
 
 .archive-header .page-title::before {
@@ -524,13 +567,15 @@ li.bbp-forum-info, li.bbp-topic-title {
 .gallery-featured-image-container img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
   border-radius: 9px;
 }
 
 .contents-container {
   background: #fff;
-  box-shadow: -500px 0 0 0 #fff, 500px 0 0 0 #fff;
+  -webkit-box-shadow: -500px 0 0 0 #fff, 500px 0 0 0 #fff;
+          box-shadow: -500px 0 0 0 #fff, 500px 0 0 0 #fff;
   text-align: center;
   padding: 64px 0;
 }
@@ -546,7 +591,9 @@ li.bbp-forum-info, li.bbp-topic-title {
 }
 
 .contents-wrapper {
+  display: -ms-grid;
   display: grid;
+  -ms-grid-columns: 1fr 16px 1fr 16px 1fr 16px 1fr;
   grid-template-columns: repeat(4, 1fr);
   grid-column-gap: 16px;
   grid-row-gap: 60px;
@@ -569,7 +616,8 @@ li.bbp-forum-info, li.bbp-topic-title {
 .content-image-wrapper img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .content-image-wrapper:hover img {
   opacity: .75;
@@ -614,6 +662,7 @@ li.bbp-forum-info, li.bbp-topic-title {
 @media screen and (max-width: 720px) {
 
   .contents-wrapper {
+    -ms-grid-columns: (1fr)[2];
     grid-template-columns: repeat(2, 1fr);
   }
 
@@ -784,25 +833,36 @@ a.back-to-gallery span {
 }
 
 .content-header {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: stretch;
-  justify-content: space-between;
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   padding-bottom: 36px;
 }
 
 .content-featured-image-container {
-  flex: 0 1 calc( ( 100% / 12 * 7) - 8px );
+  -webkit-box-flex: 0;
+      -ms-flex: 0 1 calc( ( 100% / 12 * 7) - 8px );
+          flex: 0 1 calc( ( 100% / 12 * 7) - 8px );
 }
 
 .content-featured-image-container img {
   border-radius: 9px;
   height: 100%;
   width: 100%;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .content-header-wrapper {
-  flex: 0 1 calc( ( 100% / 12 * 5 ) - 8px );
+  -webkit-box-flex: 0;
+      -ms-flex: 0 1 calc( ( 100% / 12 * 5 ) - 8px );
+          flex: 0 1 calc( ( 100% / 12 * 5 ) - 8px );
 }
 
 .content-header-wrapper .gallery-icon-img {
@@ -840,19 +900,28 @@ a.back-to-gallery span {
 
 .body-wrapper {
   background: #fff;
-  box-shadow: -500px 0 0 0 #fff, 500px 0 0 0 #fff;
+  -webkit-box-shadow: -500px 0 0 0 #fff, 500px 0 0 0 #fff;
+          box-shadow: -500px 0 0 0 #fff, 500px 0 0 0 #fff;
   padding-top: 54px;
   padding-bottom: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: space-between;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 .content-body {
-  flex: 0 1 calc( 100% / 12 * 7 );
+  -webkit-box-flex: 0;
+      -ms-flex: 0 1 calc( 100% / 12 * 7 );
+          flex: 0 1 calc( 100% / 12 * 7 );
 }
 
 .content-aside {
-  flex: 0 1 calc( ( 100% / 12 * 5 ) - 68px );
+  -webkit-box-flex: 0;
+      -ms-flex: 0 1 calc( ( 100% / 12 * 5 ) - 68px );
+          flex: 0 1 calc( ( 100% / 12 * 5 ) - 68px );
 }
 
 .content-body h2 {
@@ -867,8 +936,12 @@ a.back-to-gallery span {
 }
 
 [class|="share-buttons-container"] {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   font-size: 13px;
   font-weight: 900;
   color: #093C60;
@@ -884,7 +957,8 @@ a.back-to-gallery span {
 
 [class|="share-buttons-container"] .addtoany_shortcode .a2a_svg {
   border-radius: 100%;
-  box-shadow: 0 0 0 5px #D6DBE5;
+  -webkit-box-shadow: 0 0 0 5px #D6DBE5;
+          box-shadow: 0 0 0 5px #D6DBE5;
 }
 
 .share-buttons-container-before-content {
@@ -893,7 +967,9 @@ a.back-to-gallery span {
   border-bottom: 1px solid #707070;
 }
 .share-buttons-container-after-content {
-  justify-content: flex-end;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
   padding-top: 20px;
   margin-top: 20px;
   border-top: 1px solid #707070;
@@ -965,9 +1041,15 @@ a.back-to-gallery span {
 }
 
 .content-forum-heading {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   margin-bottom: 32px;
 }
 
@@ -980,9 +1062,15 @@ a.back-to-gallery span {
 }
 
 .content-forum-heading div {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: flex-start;
-  align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .content-forum-heading p {
