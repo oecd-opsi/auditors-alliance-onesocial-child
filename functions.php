@@ -368,3 +368,16 @@ function remove_moderation_queue_filter( $sql, $query ) {
 add_filter( 'posts_where', 'remove_moderation_queue_filter', 300, 2 );
 
 // require_once('includes/bp-custom.php');
+
+// Protect frontend: not logged in users get redirected to an information page.
+function bs_guest_redirect() {
+
+  if( bbp_is_single_topic() || bbp_is_single_reply() || is_singular( 'content' ) ) {
+    if( !is_user_logged_in() ) {
+      wp_safe_redirect( site_url( '/not-logged-in/') );
+      exit;
+    }
+  }
+
+}
+add_action( 'template_redirect', 'bs_guest_redirect' );
