@@ -238,7 +238,7 @@ h2 {
 .footer-widget .widget p, .footer-widget .widget li, .footer-widget .widget .textwidget,
 .footer-style-2 .footer-inner-top, .footer-style-2 .footer-widget a {
   color: #fff;
-  font-size: 18px;
+  font-size: 14px;
   margin-bottom: 0;
 }
 
@@ -1122,4 +1122,10 @@ div#register-page .register-section, div#register-page .security-question-sectio
     padding: 0 1%;
   }
 
+}
+
+/* FORM */
+input[type="text"], input[type="tel"], input[type="email"], input[type="password"], input[type="email"], input[type="number"], textarea {
+  background: #fff;
+  border: 1px solid #EAE5DB;
 }
