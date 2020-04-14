@@ -710,6 +710,7 @@ h1.big {
   position: relative;
   padding-top: 40px;
   margin-top: 48px;
+  overflow: visible;
 }
 
 #bbpress-forums .bbp-replies div.bbp-reply-header {
@@ -1128,4 +1129,15 @@ div#register-page .register-section, div#register-page .security-question-sectio
 input[type="text"], input[type="tel"], input[type="email"], input[type="password"], input[type="email"], input[type="number"], textarea {
   background: #fff;
   border: 1px solid #EAE5DB;
+}
+
+.wp-editor-container .mce-statusbar {
+  display: none;
+}
+
+@media screen and (min-width: 721px) {
+  .two-cols-element {
+    columns: 2;
+    column-gap: 60px;
+  }
 }
