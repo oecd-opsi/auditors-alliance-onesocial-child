@@ -389,3 +389,13 @@ function bs_guest_redirect() {
 
 }
 add_action( 'template_redirect', 'bs_guest_redirect' );
+
+// Extend Gettext override plugin functionalities to use also gettext with context
+function bs_edit_label( $translated, $original, $context, $domain ) {
+
+  global $MP_Gettext_Override;
+
+  return $MP_Gettext_Override->mp_gettext_change( $translated, $original, $domain );
+
+}
+add_filter( 'gettext_with_context', 'bs_edit_label', 10, 4 );
