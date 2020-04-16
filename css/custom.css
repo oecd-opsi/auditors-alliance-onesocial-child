@@ -1141,3 +1141,7 @@ input[type="text"], input[type="tel"], input[type="email"], input[type="password
     column-gap: 60px;
   }
 }
+
+#profile-edit-form > h2:first-of-type {
+  display: none;
+}
