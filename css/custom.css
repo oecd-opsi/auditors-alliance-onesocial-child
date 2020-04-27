@@ -242,10 +242,29 @@ h2 {
   margin-bottom: 0;
 }
 
-.footer-inner .footer-widget:first-child {
-  -webkit-box-flex: 2;
-      -ms-flex: 2 2 0px;
-          flex: 2 2 0;
+#colophon .footer-inner {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-template-rows: auto auto;
+}
+
+#colophon .footer-inner .footer-widget:first-child {
+  grid-area: 1 / 1 / 2 / 1;
+}
+
+#colophon .footer-inner .footer-widget:nth-child(2) {
+  grid-column-start: 2;
+  grid-row-start: 1;
+  align-self: start;
+  text-align: right;
+}
+
+#colophon .footer-inner .footer-widget:last-child {
+  grid-column-start: 2;
+  grid-row-start: 1;
+}
+
+.footer-style-2 .footer-widget {
   max-width: 100%;
 }
 
@@ -1143,5 +1162,10 @@ input[type="text"], input[type="tel"], input[type="email"], input[type="password
 }
 
 #profile-edit-form > h2:first-of-type {
+  display: none;
+}
+
+#activity-filter-by [value="bbp_topic_create"] ~ [value="bbp_topic_create"],
+#activity-filter-by [value="bbp_reply_create"] ~ [value="bbp_reply_create"] {
   display: none;
 }
