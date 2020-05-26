@@ -214,6 +214,7 @@ h2 {
     -webkit-appearance:none; /* Safari and Chrome */
   background: transparent url('../images/select-arrow.png') no-repeat right center;
   text-transform: none;
+  min-width: 140px;
 }
 
 .header-button {
@@ -257,6 +258,7 @@ h2 {
   grid-row-start: 1;
   align-self: start;
   text-align: right;
+  position: relative;
 }
 
 #colophon .footer-inner .footer-widget:last-child {
@@ -1168,4 +1170,21 @@ input[type="text"], input[type="tel"], input[type="email"], input[type="password
 #activity-filter-by [value="bbp_topic_create"] ~ [value="bbp_topic_create"],
 #activity-filter-by [value="bbp_reply_create"] ~ [value="bbp_reply_create"] {
   display: none;
+}
+
+#bbpress-forums fieldset.bbp-form legend .two-cols-element p {
+  margin-bottom: 0;
+}
+#bbpress-forums fieldset.bbp-form legend .two-cols-element p:nth-child(2n) {
+  margin-bottom: 32px;
+}
+
+#bbpress-forums fieldset.bbp-form legend .two-cols-element label br {
+  display: none;
+}
+
+#bbpress-forums fieldset.bbp-form legend .two-cols-element .bbp-template-notice {
+  break-before: always;
+  padding: 0;
+  margin-bottom: 0;
 }
