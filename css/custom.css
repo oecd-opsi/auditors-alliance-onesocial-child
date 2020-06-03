@@ -397,6 +397,7 @@ h2[id] {
 
 .gallery-card a img {
   height: 247px;
+  width: 100%;
   -o-object-fit: cover;
      object-fit: cover;
   border-radius: 9px;
