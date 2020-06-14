@@ -82,7 +82,7 @@
 
 				<h2><?php _e( 'Account Details', 'buddypress' ); ?></h2>
 
-				<label for="signup_username"><?php _e( 'Username', 'buddypress' ); ?> <?php _e( '(required)', 'buddypress' ); ?></label>
+				<label for="signup_username"><?php _e( 'Username', 'buddypress' ); ?> <?php _e( '<span class="red-asterisk" aria-hidden="true">*</span><span class="screen-reader-text">(required)</span>', 'buddypress' ); ?></label>
 				<?php
 
 				/**
@@ -93,7 +93,7 @@
 				do_action( 'bp_signup_username_errors' ); ?>
 				<input type="text" name="signup_username" id="signup_username" value="<?php bp_signup_username_value(); ?>" <?php bp_form_field_attributes( 'username' ); ?>/>
 
-				<label for="signup_email"><?php _e( 'Email Address', 'buddypress' ); ?> <?php _e( '(required)', 'buddypress' ); ?></label>
+				<label for="signup_email"><?php _e( 'Email Address', 'buddypress' ); ?> <?php _e( '<span class="red-asterisk" aria-hidden="true">*</span><span class="screen-reader-text">(required)</span>', 'buddypress' ); ?></label>
 				<?php
 
 				/**
@@ -104,7 +104,7 @@
 				do_action( 'bp_signup_email_errors' ); ?>
 				<input type="email" name="signup_email" id="signup_email" value="<?php bp_signup_email_value(); ?>" <?php bp_form_field_attributes( 'email' ); ?>/>
 
-				<label for="signup_password"><?php _e( 'Choose a Password', 'buddypress' ); ?> <?php _e( '(required)', 'buddypress' ); ?></label>
+				<label for="signup_password"><?php _e( 'Choose a Password', 'buddypress' ); ?> <?php _e( '<span class="red-asterisk" aria-hidden="true">*</span><span class="screen-reader-text">(required)</span>', 'buddypress' ); ?></label>
 				<?php
 
 				/**
@@ -116,7 +116,7 @@
 				<input type="password" name="signup_password" id="signup_password" value="" class="password-entry" <?php bp_form_field_attributes( 'password' ); ?>/>
 				<div id="pass-strength-result"></div>
 
-				<label for="signup_password_confirm"><?php _e( 'Confirm Password', 'buddypress' ); ?> <?php _e( '(required)', 'buddypress' ); ?></label>
+				<label for="signup_password_confirm"><?php _e( 'Confirm Password', 'buddypress' ); ?> <?php _e( '<span class="red-asterisk" aria-hidden="true">*</span><span class="screen-reader-text">(required)</span>', 'buddypress' ); ?></label>
 				<?php
 
 				/**
@@ -277,7 +277,7 @@
 
 					<div id="blog-details"<?php if ( (int) bp_get_signup_with_blog_value() ) : ?>class="show"<?php endif; ?>>
 
-						<label for="signup_blog_url"><?php _e( 'Blog URL', 'buddypress' ); ?> <?php _e( '(required)', 'buddypress' ); ?></label>
+						<label for="signup_blog_url"><?php _e( 'Blog URL', 'buddypress' ); ?> <?php _e( '<span class="red-asterisk" aria-hidden="true">*</span><span class="screen-reader-text">(required)</span>', 'buddypress' ); ?></label>
 						<?php
 
 						/**
@@ -293,7 +293,7 @@
 							<?php echo home_url( '/' ); ?> <input type="text" name="signup_blog_url" id="signup_blog_url" value="<?php bp_signup_blog_url_value(); ?>" />
 						<?php endif; ?>
 
-						<label for="signup_blog_title"><?php _e( 'Site Title', 'buddypress' ); ?> <?php _e( '(required)', 'buddypress' ); ?></label>
+						<label for="signup_blog_title"><?php _e( 'Site Title', 'buddypress' ); ?> <?php _e( '<span class="red-asterisk" aria-hidden="true">*</span><span class="screen-reader-text">(required)</span>', 'buddypress' ); ?></label>
 						<?php
 
 						/**

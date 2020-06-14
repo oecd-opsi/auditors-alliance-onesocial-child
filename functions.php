@@ -399,3 +399,9 @@ function bs_edit_label( $translated, $original, $context, $domain ) {
 
 }
 add_filter( 'gettext_with_context', 'bs_edit_label', 10, 4 );
+
+// Required label
+function bp_change_required_label($translated_string, $field_id) {
+		return '<span class="red-asterisk" aria-hidden="true">*</span><span class="screen-reader-text">(required)</span>';		
+}
+add_filter('bp_get_the_profile_field_required_label', 'bp_change_required_label', 10, 2);

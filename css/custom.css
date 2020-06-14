@@ -130,7 +130,7 @@ h2 {
 
 /* HEADER */
 #masthead {
-  border-bottom: 7px solid #449B23
+  border-bottom: 3px solid #449B23
 }
 
 .header-wrapper {
@@ -174,7 +174,7 @@ h2 {
 }
 
 .main-navigation .nav-menu > li > a {
-  font-size: 16px;
+  font-size: 18px;
   font-weight: bold;
   color: #58595B;
   text-transform: none;
@@ -259,6 +259,11 @@ h2 {
   align-self: start;
   text-align: right;
   position: relative;
+  flex-direction: column;
+}
+
+#colophon .footer-inner .footer-widget:nth-child(2) .widget_media_image {
+  margin-bottom: 30px;
 }
 
 #colophon .footer-inner .footer-widget:last-child {
@@ -348,14 +353,14 @@ h2 {
   border-radius: 18px;
   -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, .16);
           box-shadow: 0 3px 6px rgba(0, 0, 0, .16);
-  margin: -116px auto 70px;
+  margin: -180px auto 70px;
   padding: 30px;
   font-size: 18px;
   max-width: 936px;
 }
 
 .how-work-section h2 {
-  font-size: 20px;
+  font-size: 24px;
   text-transform: uppercase;
 }
 
@@ -672,14 +677,15 @@ li.bbp-forum-info, li.bbp-topic-title {
 }
 
 .content-date {
-  font-size: 12px;
+  font-size: 14px;
   color: #707070;
   margin-bottom: 12px;
 }
 
 .content-author {
-  font-style: 12px;
+  font-size: 16px;
   color: #108BE5;
+  margin-bottom: 8px;
 }
 
 .gallery-forum {
@@ -779,10 +785,10 @@ span.bbp-admin-links a:hover {
 #bbp_reply_submit,
 #bbp_topic_submit {
   background: #E68906;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: bold;
   color: #fff;
-  padding: 10px;
+  padding: 10px 14px;
   border-radius: 3px;
   line-height: 1;
   text-transform: uppercase;
@@ -848,16 +854,12 @@ button.wp_ulike_btn {
 }
 
 a.back-to-gallery {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 900;
   color: #4E4747;
 }
 a.back-to-gallery:hover {
   text-decoration: underline;
-}
-
-a.back-to-gallery span {
-  text-transform: uppercase;
 }
 
 .content-header {
@@ -875,8 +877,8 @@ a.back-to-gallery span {
 
 .content-featured-image-container {
   -webkit-box-flex: 0;
-      -ms-flex: 0 1 calc( ( 100% / 12 * 7) - 8px );
-          flex: 0 1 calc( ( 100% / 12 * 7) - 8px );
+      -ms-flex: 0 1 calc( ( 100% / 12 * 6) - 8px );
+          flex: 0 1 calc( ( 100% / 12 * 6) - 8px );
 }
 
 .content-featured-image-container img {
@@ -889,8 +891,8 @@ a.back-to-gallery span {
 
 .content-header-wrapper {
   -webkit-box-flex: 0;
-      -ms-flex: 0 1 calc( ( 100% / 12 * 5 ) - 8px );
-          flex: 0 1 calc( ( 100% / 12 * 5 ) - 8px );
+      -ms-flex: 0 1 calc( ( 100% / 12 * 6 ) - 8px );
+          flex: 0 1 calc( ( 100% / 12 * 6 ) - 8px );
 }
 
 .content-header-wrapper .gallery-icon-img {
@@ -904,7 +906,7 @@ a.back-to-gallery span {
 }
 
 .content-header-wrapper .content-tipology-name {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: bold;
   color: #E68906;
   text-transform: uppercase;
@@ -916,6 +918,7 @@ a.back-to-gallery span {
   font-weight: bold;
   color: #093C60;
   margin-bottom: 24px;
+  line-height: 1.2;
 }
 
 .content-header-wrapper .content-date {
@@ -923,7 +926,7 @@ a.back-to-gallery span {
 }
 
 .content-header-wrapper .content-author {
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .body-wrapper {
@@ -985,8 +988,6 @@ a.back-to-gallery span {
 
 [class|="share-buttons-container"] .addtoany_shortcode .a2a_svg {
   border-radius: 100%;
-  -webkit-box-shadow: 0 0 0 5px #D6DBE5;
-          box-shadow: 0 0 0 5px #D6DBE5;
 }
 
 .share-buttons-container-before-content {
@@ -1040,7 +1041,7 @@ a.back-to-gallery span {
 }
 
 .gallery-index li .date {
-  font-size: 13px;
+  font-size: 15px;
   color: #707070;
   margin-bottom: 0;
 }
@@ -1188,4 +1189,58 @@ input[type="text"], input[type="tel"], input[type="email"], input[type="password
   break-before: always;
   padding: 0;
   margin-bottom: 0;
+}
+
+/* MEMBER */
+#buddypress div#item-nav .item-list-tabs ul li a {
+  font-size: 14px;
+  padding-bottom: 32px;
+}
+
+.red-asterisk {
+  color: red;
+}
+
+.field_google-plus,
+.field_youtube,
+.field_instagram,
+.field_pinterest {
+  display: none;
+}
+
+.dir-header {
+  font-size: 40px;
+}
+
+label[for="members_search"] {
+  padding-right: 0;
+}
+label[for="members_search"]::after,
+#members_search_submit {
+  display: none;
+}
+
+#buddypress .dir-form div.item-list-tabs ul li a,
+.bb-order-by,
+.buddyboss-select-inner span {
+  font-size: 12px;
+}
+
+#buddypress .dir-list ul.item-list .item-title {
+  margin-bottom: .3em;
+}
+
+.item-avatar .friendship-button.remove {
+  pointer-events: none;
+}
+.item-avatar .friendship-button.remove::after {
+  display: none !important;
+}
+.item-avatar .friendship-button.remove:hover {
+  color: transparent;
+}
+
+/* PIECE */
+div.bbp-template-notice {
+  padding-left: 0;
 }
