@@ -783,7 +783,8 @@ span.bbp-admin-links a:hover {
 }
 
 #bbp_reply_submit,
-#bbp_topic_submit {
+#bbp_topic_submit,
+input[type="submit"].wpcf7-submit {
   background: #E68906;
   font-size: 16px;
   font-weight: bold;
@@ -792,6 +793,12 @@ span.bbp-admin-links a:hover {
   border-radius: 3px;
   line-height: 1;
   text-transform: uppercase;
+  border: none;
+}
+#bbp_reply_submit:hover,
+#bbp_topic_submit:hover,
+input[type="submit"].wpcf7-submit:hover {
+  background: #093c60;
 }
 
 #bbpress-forums #subscription-toggle > span {
@@ -1154,6 +1161,16 @@ input[type="text"], input[type="tel"], input[type="email"], input[type="password
   border: 1px solid #EAE5DB;
 }
 
+.buddyboss-select-inner select.wpcf7-select  {
+  border: 1px solid #EAE5DB;
+  opacity: 1;
+  width: 416px;
+  height: 22px;
+  padding: 4px 3px 18px;
+  box-sizing: content-box;
+  background: #fff url('../images/select-arrow.png') no-repeat 97% center;
+}
+
 .wp-editor-container .mce-statusbar {
   display: none;
 }
@@ -1243,4 +1260,13 @@ label[for="members_search"]::after,
 /* PIECE */
 div.bbp-template-notice {
   padding-left: 0;
+}
+
+/* EXPORT DATA */
+.export-data-list-wrapper ul {
+  margin: 0;
+  list-style: none;
+}
+.export-data-list-wrapper ul li {
+  list-style-type: none;
 }

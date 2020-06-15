@@ -402,6 +402,40 @@ add_filter( 'gettext_with_context', 'bs_edit_label', 10, 4 );
 
 // Required label
 function bp_change_required_label($translated_string, $field_id) {
-		return '<span class="red-asterisk" aria-hidden="true">*</span><span class="screen-reader-text">(required)</span>';		
+		return '<span class="red-asterisk" aria-hidden="true">*</span><span class="screen-reader-text">(required)</span>';
 }
 add_filter('bp_get_the_profile_field_required_label', 'bp_change_required_label', 10, 2);
+
+// Add dynamic select field for Gallery field in Submit a piece form
+function bs_dynamic_select_field_galleries_values ( $scanned_tag, $replace ) {
+
+  if ( $scanned_tag['name'] != 'gallery-interests' && $scanned_tag['name'] != 'piece-type' )
+    return $scanned_tag;
+
+  if ( $scanned_tag['name'] == 'gallery-interests' ) {
+    $taxomy_slug = 'gallery';
+  } elseif ( $scanned_tag['name'] == 'piece-type' ) {
+    $taxomy_slug = 'typology';
+  }
+
+  $rows = get_terms( array (
+    'taxonomy'    => $taxomy_slug,
+    'hide_empty'  => false,
+    'fields'      => 'names',
+  ) );
+
+  if ( ! $rows )
+      return $scanned_tag;
+
+  foreach ( $rows as $row ) {
+      $scanned_tag['raw_values'][] = $row . '|' . $row;
+  }
+
+  $pipes = new WPCF7_Pipes($scanned_tag['raw_values']);
+
+  $scanned_tag['values'] = $pipes->collect_befores();
+  $scanned_tag['pipes'] = $pipes;
+
+  return $scanned_tag;
+}
+add_filter( 'wpcf7_form_tag', 'bs_dynamic_select_field_galleries_values', 10, 2);
