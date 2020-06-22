@@ -439,3 +439,17 @@ function bs_dynamic_select_field_galleries_values ( $scanned_tag, $replace ) {
   return $scanned_tag;
 }
 add_filter( 'wpcf7_form_tag', 'bs_dynamic_select_field_galleries_values', 10, 2);
+
+// Edit members per page number
+function bs_bp_members_per_page( $retval ) {
+  $retval['per_page'] = 40;
+  return $retval;
+}
+add_filter( 'bp_after_has_members_parse_args', 'bs_bp_members_per_page' );
+
+// Add required legend to form
+function required_legend() {
+  echo '<p><small><span class="red-asterisk" aria-hidden="true">*</span> required field</small></p>';
+}
+add_action( 'bp_after_profile_field_content', 'required_legend', 20 );
+add_action( 'bp_before_registration_submit_buttons', 'required_legend' );

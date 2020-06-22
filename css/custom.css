@@ -226,6 +226,27 @@ h2 {
           box-shadow: none !important;
 }
 
+.header-notifications a#user-messages > span::before {
+  content: "";
+  display: inline-block;
+  width: 21px;
+  height: 23px;
+  -webkit-mask: url('../images/mail-icon-alert.svg') no-repeat 50% 50%;
+  mask: url('../images/mail-icon-alert.svg') no-repeat 50% 50%;
+  -webkit-mask-size: cover;
+  mask-size: cover;
+  background: #108be5;
+}
+.header-notifications a#user-messages > span.no-alert::before {
+  content: "";
+  background: #333;
+}
+.header-notifications a#user-messages:hover > span::before,
+.header-notifications a#user-messages:hover > span::before {
+  content: "";
+  background: #fff !important;
+}
+
 /* FOOTER */
 .footer-widget:not(:first-child) {
   display: -webkit-box;
@@ -677,7 +698,7 @@ li.bbp-forum-info, li.bbp-topic-title {
 }
 
 .content-date {
-  font-size: 14px;
+  font-size: 16px;
   color: #707070;
   margin-bottom: 12px;
 }
@@ -884,8 +905,8 @@ a.back-to-gallery:hover {
 
 .content-featured-image-container {
   -webkit-box-flex: 0;
-      -ms-flex: 0 1 calc( ( 100% / 12 * 6) - 8px );
-          flex: 0 1 calc( ( 100% / 12 * 6) - 8px );
+      -ms-flex: 0 1 calc( ( 100% / 12 * 5 ) - 8px );
+          flex: 0 1 calc( ( 100% / 12 * 5 ) - 8px );
 }
 
 .content-featured-image-container img {
@@ -898,8 +919,8 @@ a.back-to-gallery:hover {
 
 .content-header-wrapper {
   -webkit-box-flex: 0;
-      -ms-flex: 0 1 calc( ( 100% / 12 * 6 ) - 8px );
-          flex: 0 1 calc( ( 100% / 12 * 6 ) - 8px );
+      -ms-flex: 0 1 calc( ( 100% / 12 * 7 ) - 8px );
+          flex: 0 1 calc( ( 100% / 12 * 7 ) - 8px );
 }
 
 .content-header-wrapper .gallery-icon-img {
@@ -933,7 +954,7 @@ a.back-to-gallery:hover {
 }
 
 .content-header-wrapper .content-author {
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .body-wrapper {
@@ -1169,6 +1190,8 @@ input[type="text"], input[type="tel"], input[type="email"], input[type="password
   padding: 4px 3px 18px;
   box-sizing: content-box;
   background: #fff url('../images/select-arrow.png') no-repeat 97% center;
+  -webkit-appearance: none;
+    -moz-appearance: none;
 }
 
 .wp-editor-container .mce-statusbar {
@@ -1208,6 +1231,11 @@ input[type="text"], input[type="tel"], input[type="email"], input[type="password
   margin-bottom: 0;
 }
 
+fieldset {
+  border: 0;
+  padding: 0;
+}
+
 /* MEMBER */
 #buddypress div#item-nav .item-list-tabs ul li a {
   font-size: 14px;
@@ -1221,7 +1249,8 @@ input[type="text"], input[type="tel"], input[type="email"], input[type="password
 .field_google-plus,
 .field_youtube,
 .field_instagram,
-.field_pinterest {
+.field_pinterest,
+.field_facebook {
   display: none;
 }
 
