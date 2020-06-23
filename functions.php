@@ -267,15 +267,15 @@ function gallery_index_func() {
   // WP_Query arguments
   $args = array(
   	'post_type'              => array( 'content' ),
-  	'post_status'            => array( 'published' ),
+  	'post_status'            => array( 'publish' ),
   	'nopaging'               => true,
   	'posts_per_page'         => '-1',
     'tax_query' => array(
-        array (
-          'taxonomy' => 'gallery',
-          'field' => 'term_id',
-          'terms' => $gallery_id,
-        )
+      array (
+        'taxonomy' => 'gallery',
+        'field' => 'term_id',
+        'terms' => $gallery_id,
+      )
     ),
   );
 
