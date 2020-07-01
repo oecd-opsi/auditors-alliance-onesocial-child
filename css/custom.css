@@ -1236,6 +1236,26 @@ fieldset {
   padding: 0;
 }
 
+#buddypress .standard-form .editfield {
+  margin-bottom: 20px;
+}
+
+#buddypress .standard-form .field-visibility-settings-notoggle, #buddypress .standard-form .field-visibility-settings-toggle {
+  margin-bottom: 0;
+  opacity: 1;
+  color: #58595b;
+}
+
+body.registration div#pass-strength-result {
+  margin-bottom: 8px;
+}
+
+input[type="text"], input[type="tel"], input[type="email"], input[type="password"], input[type="email"], input[type="number"], textarea,
+div#register-page #basic-details-section input {
+  padding: 10px;
+  font-size: 16px;
+}
+
 /* MEMBER */
 #buddypress div#item-nav .item-list-tabs ul li a {
   font-size: 14px;
@@ -1244,6 +1264,8 @@ fieldset {
 
 .red-asterisk {
   color: red;
+  font-size: 20px;
+  font-weight: bold;
 }
 
 .field_google-plus,
