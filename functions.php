@@ -395,7 +395,9 @@ function bs_edit_label( $translated, $original, $context, $domain ) {
 
   global $MP_Gettext_Override;
 
-  return $MP_Gettext_Override->mp_gettext_change( $translated, $original, $domain );
+  if ( isset($MP_Gettext_Override) ) {
+    return $MP_Gettext_Override->mp_gettext_change( $translated, $original, $domain );    
+  }
 
 }
 add_filter( 'gettext_with_context', 'bs_edit_label', 10, 4 );
