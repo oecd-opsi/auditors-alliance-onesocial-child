@@ -396,7 +396,7 @@ function bs_edit_label( $translated, $original, $context, $domain ) {
   global $MP_Gettext_Override;
 
   if ( isset($MP_Gettext_Override) ) {
-    return $MP_Gettext_Override->mp_gettext_change( $translated, $original, $domain );    
+    return $MP_Gettext_Override->mp_gettext_change( $translated, $original, $domain );
   }
 
 }
@@ -404,7 +404,7 @@ add_filter( 'gettext_with_context', 'bs_edit_label', 10, 4 );
 
 // Required label
 function bp_change_required_label($translated_string, $field_id) {
-		return '<span class="red-asterisk" aria-hidden="true">*</span><span class="screen-reader-text">(required)</span>';
+	return '<span class="red-asterisk" aria-hidden="true">*</span><span class="screen-reader-text">(required)</span>';
 }
 add_filter('bp_get_the_profile_field_required_label', 'bp_change_required_label', 10, 2);
 
@@ -455,3 +455,13 @@ function required_legend() {
 }
 add_action( 'bp_after_profile_field_content', 'required_legend', 20 );
 add_action( 'bp_before_registration_submit_buttons', 'required_legend' );
+
+// Shortcode to display multiple authors
+function multiple_author_func() {
+  if ( function_exists( 'coauthors' ) ) {
+    return coauthors( ', ', '', '', '', false);
+  } else {
+    return get_the_author();
+  }
+}
+add_shortcode( 'multiple-author', 'multiple_author_func' );
