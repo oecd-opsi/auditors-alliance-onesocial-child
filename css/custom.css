@@ -287,6 +287,10 @@ h2 {
   margin-bottom: 30px;
 }
 
+#colophon .footer-inner .footer-widget:first-child .widget_media_image {
+  margin-bottom: 36px;
+}
+
 #colophon .footer-inner .footer-widget:last-child {
   grid-column-start: 2;
   grid-row-start: 1;
@@ -308,6 +312,8 @@ h2 {
 #colophon.footer-style-2 {
   min-height: 0;
 }
+
+
 
 /* HOME */
 .home-page {
