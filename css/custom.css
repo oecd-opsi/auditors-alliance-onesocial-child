@@ -188,6 +188,11 @@ h2 {
   margin-right: 0;
 }
 
+.main-navigation .nav-menu > .menu-item-has-children > a {
+  background: transparent url('../images/select-arrow.png') no-repeat right center;
+  padding-right: 18px;
+}
+
 #menu-main-1 {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -845,6 +850,10 @@ input[type="submit"].wpcf7-submit:hover {
   position: static;
   padding: 9px;
 }
+#bbpress-forums  #subscription-toggle a.subscription-toggle:hover {
+  font-size: 14px;
+  background: #093c60;
+}
 
 #bbpress-forums  #subscription-toggle a.subscription-toggle::before,
 #bbpress-forums  #subscription-toggle a.subscription-toggle::after {
@@ -934,7 +943,7 @@ a.back-to-gallery:hover {
 }
 
 .content-header-wrapper .content-gallery-name {
-  font-size: 30px;
+  font-size: 24px;
   color: #093C60;
   margin-bottom: 24px;
 }
@@ -948,15 +957,15 @@ a.back-to-gallery:hover {
 }
 
 .content-header-wrapper .content-title {
-  font-size: 40px;
+  font-size: 36px;
   font-weight: bold;
   color: #093C60;
-  margin-bottom: 24px;
+  margin-bottom: 16px;
   line-height: 1.2;
 }
 
 .content-header-wrapper .content-date {
-  margin-bottom: 58px;
+  margin-bottom: 46px;
 }
 
 .content-header-wrapper .content-author {
@@ -1191,13 +1200,17 @@ input[type="text"], input[type="tel"], input[type="email"], input[type="password
 .buddyboss-select-inner select.wpcf7-select  {
   border: 1px solid #EAE5DB;
   opacity: 1;
-  width: 416px;
+  width: 384px;
   height: 22px;
   padding: 4px 3px 18px;
   box-sizing: content-box;
   background: #fff url('../images/select-arrow.png') no-repeat 97% center;
   -webkit-appearance: none;
     -moz-appearance: none;
+}
+
+#wpcf7-f369-p370-o1 textarea {
+  width: 384px;
 }
 
 .wp-editor-container .mce-statusbar {
@@ -1326,4 +1339,12 @@ div.bbp-template-notice {
 }
 .export-data-list-wrapper ul li {
   list-style-type: none;
+}
+
+.bbp-topic-super-sticky-link {
+  display: none;
+}
+
+big {
+  font-size: 1.4em;
 }

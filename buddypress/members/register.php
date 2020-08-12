@@ -65,7 +65,7 @@
 
 			</div>
 
-			<p><?php _e( 'Registering for this site is easy. Just fill in the fields below, and we\'ll get a new account set up for you in no time.', 'buddypress' ); ?></p>
+			<p><big><?php _e( 'Please fill in the fields below to join the online Auditors Alliance community.', 'buddypress' ); ?></big></p>
 
 			<?php
 

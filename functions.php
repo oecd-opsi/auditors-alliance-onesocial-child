@@ -56,6 +56,18 @@ function onesocial_child_theme_scripts_styles()
     wp_add_inline_style( 'onesocial-child-custom', '.home-page #page .wp-block-search {background-image:url('.$featured_img.');}' );
   }
 
+  /*
+   * Scripts
+   */
+   wp_enqueue_script( 'hide-show-password',
+     get_stylesheet_directory_uri() . '/js/hideShowPassword.min.js',
+     array( 'jquery' )
+   );
+   wp_enqueue_script( 'bs-script-theme',
+     get_stylesheet_directory_uri() . '/js/bs-script.js',
+     array( 'jquery', 'hide-show-password' )
+   );
+
 }
 add_action( 'wp_enqueue_scripts', 'onesocial_child_theme_scripts_styles', 9999 );
 
@@ -424,13 +436,19 @@ function bs_dynamic_select_field_galleries_values ( $scanned_tag, $replace ) {
     'taxonomy'    => $taxomy_slug,
     'hide_empty'  => false,
     'fields'      => 'names',
+    'exclude'     => array( 29 ),
   ) );
 
   if ( ! $rows )
-      return $scanned_tag;
+    return $scanned_tag;
 
   foreach ( $rows as $row ) {
-      $scanned_tag['raw_values'][] = $row . '|' . $row;
+    $scanned_tag['raw_values'][] = $row . '|' . $row;
+  }
+
+  if ( $scanned_tag['name'] == 'piece-type' ) {
+    $taxomy_slug = 'typology';
+    $scanned_tag['raw_values'][] = 'I’m open to exploring|explore';
   }
 
   $pipes = new WPCF7_Pipes($scanned_tag['raw_values']);
@@ -458,10 +476,61 @@ add_action( 'bp_before_registration_submit_buttons', 'required_legend' );
 
 // Shortcode to display multiple authors
 function multiple_author_func() {
-  if ( function_exists( 'coauthors' ) ) {
-    return coauthors( ', ', '', '', '', false);
+  if ( function_exists( 'coauthors_posts_links' ) ) {
+    return coauthors_posts_links( ', ', ', ', '', '', false );
   } else {
     return get_the_author();
   }
 }
 add_shortcode( 'multiple-author', 'multiple_author_func' );
+
+// Redirect author page to profile page
+function buddydev_author_redirect_to_profile() {
+  if ( is_author() && function_exists( 'bp_core_redirect' ) ) {
+    $author_id = get_queried_object_id();
+    bp_core_redirect( bp_core_get_user_domain( $author_id ) );
+  }
+}
+add_action( 'template_redirect', 'buddydev_author_redirect_to_profile' );
+
+/* Enable TinyMCE paste plugin to avoid problem while pasting text from external sources*/
+function bbp_add_paste_plugin($args) {
+  array_push($args,'paste');
+  return $args;
+}
+add_filter( 'teeny_mce_plugins', 'bbp_add_paste_plugin');
+/* Enable paste_sticky as default */
+function bbp_myformatTinyMCE($in) {
+	$in['paste_text_sticky'] = true;
+	$in['paste_text_sticky_default'] = true;
+   return $in;
+}
+add_filter('teeny_mce_before_init', 'bbp_myformatTinyMCE');
+
+// Add an admin notice to notify pending user
+function auditors_admin_notice() {
+	// Get the total number of users for the current query. I use (int) only for sanitize.
+  $signup = new BP_Signup();
+  $users_count = $signup::count_signups();
+	// Echo a string and the value
+	if ( $users_count > 0 ) {
+		?>
+		<div class="notice notice-warning is-dismissible">
+			<p>
+				<a href="<?php admin_url(); ?>users.php?page=bp-signups"><strong><?php echo sprintf( __( 'There are %d Pending Users' ), $users_count ); ?></strong></a>
+			</p>
+		</div>
+		<?php
+	}
+}
+add_action( 'admin_notices', 'auditors_admin_notice', 100 );
+
+// Send an email when a new user has registered for an account
+function notify_new_user() {
+  wp_mail(
+    'auditorsalliance@oecd.org',
+    'OECD Auditors Alliance - A new user has registered for an account',
+    'A new user has registered for an account on OECD Auditors Alliance website. Check pending user to activate their account: '.admin_url().'users.php?page=bp-signups',
+  );
+}
+add_action( 'bp_core_signup_user', 'notify_new_user' );
