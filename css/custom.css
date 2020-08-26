@@ -1348,3 +1348,12 @@ div.bbp-template-notice {
 big {
   font-size: 1.4em;
 }
+
+#buddypress #whats-new-selects {
+  display: flex;
+  flex-direction: column;
+}
+
+#buddypress #whats-new-selects label {
+  order: -1;
+}

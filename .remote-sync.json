@@ -5,7 +5,7 @@
   "uploadOnSave": true,
   "useAtomicWrites": false,
   "deleteLocal": false,
-  "hostname": "35.180.38.205",
+  "hostname": "15.236.127.5",
   "target": "/opt/bitnami/apps/wordpress/htdocs/wp-content/themes/auditors-alliance-onesocial-child",
   "ignore": [
     ".remote-sync.json",
