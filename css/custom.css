@@ -193,6 +193,11 @@ h2 {
   padding-right: 18px;
 }
 
+.main-navigation li a {
+  text-transform: none;
+  font-size: 16px;
+}
+
 #menu-main-1 {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1356,4 +1361,14 @@ big {
 
 #buddypress #whats-new-selects label {
   order: -1;
+}
+
+/* Search page */
+body.search h1.entry-title {
+  font-size: 46px;
+  margin-top: 0;
+}
+
+.search #buddypress div:not(#item-nav) > .dir-form div.item-list-tabs ul li a {
+  font-size: 16px;
 }
