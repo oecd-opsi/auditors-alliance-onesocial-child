@@ -534,3 +534,25 @@ function notify_new_user() {
   );
 }
 add_action( 'bp_core_signup_user', 'notify_new_user' );
+
+// Add forum related scripts to Gallery archive
+function forum_script_in_gallery( $scripts ) {
+  if( is_tax('gallery') ) {
+    $scripts['bbpress-editor'] = array(
+				'file'         => 'js/editor.js',
+				'dependencies' => array( 'jquery' )
+			);
+    $scripts['bbpress-engagements'] = array(
+				'file'         => 'js/engagements.js',
+				'dependencies' => array( 'jquery' )
+			);
+
+    wp_localize_script( 'bbpress-engagements', 'bbpEngagementJS', array(
+			'object_id'          => get_the_ID(),
+			'bbp_ajaxurl'        => bbp_get_ajax_url(),
+			'generic_ajax_error' => esc_html__( 'Something went wrong. Refresh your browser and try again.', 'bbpress' ),
+		) );
+  }
+  return $scripts;
+}
+add_filter( 'bbp_default_scripts', 'forum_script_in_gallery', 20, 1 );
