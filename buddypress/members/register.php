@@ -65,7 +65,7 @@
 
 			</div>
 
-			<p><big><?php _e( 'Please fill in the fields below to join the online Auditors Alliance community.', 'buddypress' ); ?></big></p>
+			<p><big><?php _e( 'Tap into the collective knowledge of public sector auditors from different countries and institutions by becoming a member of the Auditors Alliance online community.', 'buddypress' ); ?></big></p>
 
 			<?php
 
@@ -353,7 +353,7 @@
 			do_action( 'bp_before_registration_submit_buttons' ); ?>
 
 			<div class="submit">
-				<input type="submit" name="signup_submit" id="signup_submit" value="<?php esc_attr_e( 'Sign up for updates from the Auditors Alliance!', 'buddypress' ); ?>" />
+				<input type="submit" name="signup_submit" id="signup_submit" value="<?php esc_attr_e( 'Sign up', 'buddypress' ); ?>" />
 			</div>
 
 			<?php

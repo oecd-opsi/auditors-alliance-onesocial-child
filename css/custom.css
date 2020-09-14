@@ -1206,8 +1206,9 @@ input[type="text"], input[type="tel"], input[type="email"], input[type="password
   border: 1px solid #EAE5DB;
   opacity: 1;
   width: 384px;
-  height: 22px;
-  padding: 4px 3px 18px;
+  /* height: 22px; */
+  /* padding: 4px 3px 18px; */
+  padding: 11px 3px;
   box-sizing: content-box;
   background: #fff url('../images/select-arrow.png') no-repeat 97% center;
   -webkit-appearance: none;
