@@ -556,3 +556,30 @@ function forum_script_in_gallery( $scripts ) {
   return $scripts;
 }
 add_filter( 'bbp_default_scripts', 'forum_script_in_gallery', 20, 1 );
+
+// Edit Reset password email title and message
+function bs_reset_password_mail_title( $title, $user_login, $user_data ){
+  $title = 'OECD Auditors Alliance Password Reset';
+  return $title;
+}
+add_filter( 'retrieve_password_title', 'bs_reset_password_mail_title', 20, 3 );
+function bs_reset_password_mail_message( $message, $key, $user_login, $user_data ) {
+  $first_name = get_user_meta( $user_data->ID, 'first_name', true );
+  $new_message = "Dear ". $first_name .",\r\n\r\n";
+  $new_message .= "You recently requested to reset your password for the OECD Auditors Alliance online platform. Please use the following link ";
+  $new_message .=  network_site_url( "wp-login.php?action=rp&key=$key&login=" . rawurlencode( $user_login ), 'login' );
+  $new_message .= " to reset your password.\r\n\r\n";
+  $new_message .= "If you did not request a password reset, please let us know by contacting the Site Administrator at supporto@blackstudio.it.\r\n\r\n";
+  $new_message .= "All the  best, \r\n\r\nThe OECD Auditors Alliance Team";
+  $message = $new_message;
+  return $message;
+}
+add_filter( 'retrieve_password_message', 'bs_reset_password_mail_message', 20, 4 );
+
+// Fix members count
+function bs_total_users() {
+  $usercount = count_users();
+  $result = $usercount['total_users'];
+  return $result;
+}
+add_filter( 'bp_get_total_member_count', 'bs_total_users', 20, 0 );

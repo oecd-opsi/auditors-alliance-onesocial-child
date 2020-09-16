@@ -1373,3 +1373,9 @@ body.search h1.entry-title {
 .search #buddypress div:not(#item-nav) > .dir-form div.item-list-tabs ul li a {
   font-size: 16px;
 }
+
+#wp-admin-bar-my-account-forums-replies,
+#wp-admin-bar-my-account-forums-engagements,
+#wp-admin-bar-my-account-forums-favorites {
+  display: none;
+}
