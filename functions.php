@@ -569,7 +569,7 @@ function bs_reset_password_mail_message( $message, $key, $user_login, $user_data
   $new_message .= "You recently requested to reset your password for the OECD Auditors Alliance online platform. Please use the following link ";
   $new_message .=  network_site_url( "wp-login.php?action=rp&key=$key&login=" . rawurlencode( $user_login ), 'login' );
   $new_message .= " to reset your password.\r\n\r\n";
-  $new_message .= "If you did not request a password reset, please let us know by contacting the Site Administrator at supporto@blackstudio.it.\r\n\r\n";
+  $new_message .= "If you did not request a password reset, please let us know by contacting auditorsalliance@oecd.org.\r\n\r\n";
   $new_message .= "All the  best, \r\n\r\nThe OECD Auditors Alliance Team";
   $message = $new_message;
   return $message;
@@ -583,3 +583,35 @@ function bs_total_users() {
   return $result;
 }
 add_filter( 'bp_get_total_member_count', 'bs_total_users', 20, 0 );
+
+// Override get unread message html function
+function buddyboss_get_unread_messages_html() {
+
+	ob_start();
+
+	if (bp_has_message_threads(array('type'=>'unread', 'user_id' => get_current_user_id() ) ) ) { ?>
+
+		<ul class="bb-user-notifications">
+			<?php while (bp_message_threads()) : bp_message_thread(); ?>
+
+				<li>
+
+					<?php bp_message_thread_avatar('height=20&width=20'); ?>
+
+          <a class="bb-message-link" href="<?php esc_url(bp_message_thread_view_link()); ?>">
+            <?php _e('You have a new message from ', 'onesocial'); ?>
+          </a>
+
+					<?php bp_message_thread_from() ?>
+
+				</li>
+
+			<?php endwhile; ?>
+		</ul>
+
+	<?php } else { ?>
+		<a href="#"><?php _e('No unread messages', 'onesocial'); ?></a>
+	<?php }
+
+	return ob_get_clean();
+}
