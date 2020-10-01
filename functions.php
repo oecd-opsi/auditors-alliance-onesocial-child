@@ -446,8 +446,11 @@ function bs_dynamic_select_field_galleries_values ( $scanned_tag, $replace ) {
     $scanned_tag['raw_values'][] = $row . '|' . $row;
   }
 
+  if ( $scanned_tag['name'] == 'gallery-interests' ) {
+    $scanned_tag['raw_values'][] = 'Other|other';
+  }
+
   if ( $scanned_tag['name'] == 'piece-type' ) {
-    $taxomy_slug = 'typology';
     $scanned_tag['raw_values'][] = 'I’m open to exploring|explore';
   }
 
