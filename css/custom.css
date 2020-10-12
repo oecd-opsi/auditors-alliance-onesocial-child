@@ -1383,3 +1383,11 @@ body.search h1.entry-title {
 .header-notifications .bb-user-notifications .bb-message-link {
   text-transform: none;
 }
+
+body.registration .site {
+  text-align: left;
+}
+
+div#register-page p {
+  max-width: 100%;
+}
