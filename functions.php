@@ -93,7 +93,7 @@ add_action( 'enqueue_block_editor_assets', 'bs_block_styles_enqueue_javascript',
  * from https://www.daggerhart.com/bbpress-recent-replies-shortcode/
  */
 function custom_bbpress_recent_replies_by_topic($atts){
-  $short_array = shortcode_atts(array('show' => 5, 'forum' => false, 'include_empty_topics' => false), $atts);
+  $short_array = shortcode_atts(array('show' => 5, 'forum' => false, 'include_empty_topics' => true), $atts);
   extract($short_array);
 
   // default values
