@@ -618,3 +618,17 @@ function buddyboss_get_unread_messages_html() {
 
 	return ob_get_clean();
 }
+
+// Add Country to user columns
+function bs_add_user_columns( $columns ) {
+  $columns['Country'] = 'Country';
+  return $columns;
+}
+add_filter( 'manage_users_columns', 'bs_add_user_columns', 15 );
+function bs_print_user_columns( $value, $column_name, $id ) {
+  if( 'Country' == $column_name ) {
+    $new_column = xprofile_get_field_data( 3, $id );
+    return $new_column;
+  }
+}
+add_action( 'manage_users_custom_column', 'bs_print_user_columns', 15, 3 );
