@@ -1219,9 +1219,9 @@ input[type="text"], input[type="tel"], input[type="email"], input[type="password
   width: 384px;
 }
 
-.wp-editor-container .mce-statusbar {
+/* .wp-editor-container .mce-statusbar {
   display: none;
-}
+} */
 
 @media screen and (min-width: 721px) {
   .two-cols-element {
