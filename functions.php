@@ -630,5 +630,6 @@ function bs_print_user_columns( $value, $column_name, $id ) {
     $new_column = xprofile_get_field_data( 3, $id );
     return $new_column;
   }
+  return $value;
 }
 add_action( 'manage_users_custom_column', 'bs_print_user_columns', 15, 3 );
