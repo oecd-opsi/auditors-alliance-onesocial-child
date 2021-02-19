@@ -1391,3 +1391,7 @@ body.registration .site {
 div#register-page p {
   max-width: 100%;
 }
+
+small {
+	font-size: 90%;
+}
