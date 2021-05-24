@@ -1395,3 +1395,7 @@ div#register-page p {
 small {
 	font-size: 90%;
 }
+
+.wp-block-button.aligncenter {
+  text-align: center;
+}
