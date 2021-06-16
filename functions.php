@@ -392,7 +392,7 @@ add_filter( 'posts_where', 'remove_moderation_queue_filter', 300, 2 );
 // Protect frontend: not logged in users get redirected to an information page.
 function bs_guest_redirect() {
 
-  if( bbp_is_single_topic() || bbp_is_single_reply() || is_singular( 'content' ) || is_page(370) ) {
+  if( bbp_is_single_topic() || bbp_is_single_reply() || is_page(370) ) {
     if( !is_user_logged_in() ) {
       wp_safe_redirect( site_url( '/not-logged-in/') );
       exit;
@@ -633,3 +633,24 @@ function bs_print_user_columns( $value, $column_name, $id ) {
   return $value;
 }
 add_action( 'manage_users_custom_column', 'bs_print_user_columns', 15, 3 );
+
+
+// Shortcode to check if a Gallery is private
+function bs_gallery_is_private() {
+  $term = get_queried_object();
+  $is_private = types_render_termmeta( 'private', array( 'term_id' => $term->term_id ) );
+  return $is_private;
+}
+add_shortcode( 'gallery-is-private', 'bs_gallery_is_private' );
+
+// Shortcode to check if a Piece belongs to a private Gallery
+function bs_piece_is_private() {
+  global $post;
+  $galleries = get_the_terms( $post, 'gallery' );
+  $is_private = false;
+  foreach ($galleries as $gallery) {
+    $is_private = types_render_termmeta( 'private', array( 'term_id' => $gallery->term_id ) );
+    return $is_private;
+  }
+}
+add_shortcode( 'piece-is-private', 'bs_piece_is_private' );
