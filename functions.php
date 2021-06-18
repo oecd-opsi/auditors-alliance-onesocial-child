@@ -44,6 +44,11 @@ function onesocial_child_theme_scripts_styles()
    * http://codex.wordpress.org/Function_Reference/wp_deregister_style
    **/
 
+   // Swiper
+	wp_enqueue_style( 'swiper-css',  get_stylesheet_directory_uri() . '/css/swiper-bundle.min.css' );
+	wp_register_script( 'swiper-js', get_stylesheet_directory_uri() . '/js/swiper-bundle.min.js', array( 'jquery' ) );
+	wp_enqueue_script( 'swiper-js' );
+
   /*
    * Styles
    */

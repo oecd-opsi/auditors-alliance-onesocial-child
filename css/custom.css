@@ -1399,3 +1399,12 @@ small {
 .wp-block-button.aligncenter {
   text-align: center;
 }
+
+.pieces-carousel-block {
+  margin-bottom: 46px;
+}
+
+.pieces-carousel-block .swiper-nav {
+  position: relative;
+  height: 46px;
+}
