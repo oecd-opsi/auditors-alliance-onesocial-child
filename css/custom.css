@@ -653,7 +653,7 @@ li.bbp-forum-info, li.bbp-topic-title {
   margin-bottom: 30px;
 }
 
-.contents-container > p {
+.contents-container:not(.full-width) > p {
   font-size: 18px;
   max-width: 720px;
   margin: 0 auto 26px;
