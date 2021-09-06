@@ -659,6 +659,10 @@ li.bbp-forum-info, li.bbp-topic-title {
   margin: 0 auto 26px;
 }
 
+.contents-container.full-width {
+  text-align: left;
+}
+
 .contents-wrapper {
   display: -ms-grid;
   display: grid;
