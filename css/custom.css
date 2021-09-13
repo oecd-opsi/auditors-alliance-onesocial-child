@@ -216,15 +216,15 @@ h2 {
   padding: 0;
   border: none;
   text-transform: uppercase;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: bold;
-  color: #00508A;
+  color: #58595B;
   appearance:none;
     -moz-appearance:none; /* Firefox */
     -webkit-appearance:none; /* Safari and Chrome */
   background: transparent url('../images/select-arrow.png') no-repeat right center;
   text-transform: none;
-  min-width: 140px;
+  min-width: 160px;
 }
 
 .header-button {
@@ -939,6 +939,7 @@ a.back-to-gallery:hover {
   width: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+  max-height: 450px;
 }
 
 .content-header-wrapper {
@@ -1411,4 +1412,91 @@ small {
 .pieces-carousel-block .swiper-nav {
   position: relative;
   height: 46px;
+}
+
+/* Pieces Archive */
+.post-type-archive-content #page,
+.post-type-archive-content #content .piece-card {
+  background-color: #fff;
+}
+
+.post-type-archive-content #content .piece-card {
+  margin-bottom: 42px;
+  border-left: 4px solid #E68906;
+  padding-left: 16px;
+  padding-top: 16px;
+  display: flex;
+  gap: 16px;
+}
+
+.piece-card__thumbnail {
+  flex: 0 0 150px;
+}
+
+.post-type-archive-content .pagination-below {
+  display: none;
+}
+
+.contents-filter {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin: 60px auto;
+  padding-bottom: 30px;
+  border-bottom: 1px solid #707070;
+}
+
+.contents-filter .wpv-submit-trigger {
+  background: #E68906;
+  font-size: 12px;
+  font-weight: bold;
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 3px;
+  line-height: 1;
+  text-transform: uppercase;
+  border: none;
+}
+
+.contents-filter label {
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.contents-filter .wpv-submit-trigger:hover {
+  background: #093c60;
+}
+
+.contents-filter .form-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.contents-filter option[value="resource-exchange"],
+.contents-filter option[value="whats-in-the-gallery"] {
+  display: none;
+}
+
+.piece-card__title {
+  font-size: 24px;
+  color: #093C60;
+  line-height: 1.2;
+  text-transform: none;
+  margin-bottom: 16px;
+}
+
+.piece-card__meta {
+  display: flex;
+  gap: 16px;
+  color: #707070;
+  font-style: italic;
+}
+
+.piece-card__meta p {
+  margin-bottom: 16px;
+}
+
+.piece-card__body p {
+  margin-bottom: 16px;
 }

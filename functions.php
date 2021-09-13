@@ -372,7 +372,7 @@ add_action( 'template_redirect', 'topic_to_content_redirect' );
 // Redirect Content archive and main forum page to homepage
 function mainforum_to_home_redirect() {
 
-  if(  bbp_is_forum_archive() ||  is_post_type_archive('content') ) {
+  if(  bbp_is_forum_archive() ) {
     wp_safe_redirect( site_url() );
     exit;
   }
@@ -659,3 +659,14 @@ function bs_piece_is_private() {
   }
 }
 add_shortcode( 'piece-is-private', 'bs_piece_is_private' );
+
+// Edit Content (pieces) archive title
+add_filter( 'get_the_archive_title', function ( $title ) {
+
+  if( is_post_type_archive('content') ) {
+    $title = 'All Galleries';
+  }
+
+  return $title;
+
+});
